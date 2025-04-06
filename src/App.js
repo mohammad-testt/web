@@ -24,7 +24,7 @@ function App({ callback }) {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          This is react app <strong>V.11</strong>
+          This is react app <strong>V.12</strong>
         </p>
         <a
           className="App-link"
