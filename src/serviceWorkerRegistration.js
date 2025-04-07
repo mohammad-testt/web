@@ -98,6 +98,22 @@ function registerValidSW(swUrl, config) {
     });
 }
 
+/**
+ * Validates and manages the service worker registration process
+ *
+ * This function:
+ * 1. Attempts to fetch the service worker script from the provided URL
+ * 2. Checks if the response is valid (exists and is JavaScript)
+ * 3. If invalid:
+ *    - Unregisters any existing service worker
+ *    - Reloads the page to start fresh
+ * 4. If valid:
+ *    - Proceeds with normal service worker registration
+ * 5. Handles offline scenarios by logging appropriate message
+ *
+ * @param {string} swUrl - URL of the service worker script
+ * @param {Object} config - Configuration object for callbacks
+ */
 function checkValidServiceWorker(swUrl, config) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl, {
