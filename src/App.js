@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App({ callback }) {
-  const a = [];
+  const [updateAvailable, setUpdateAvailable] = useState(false);
 
   const notify = () => {
     console.log("service worker update waiting");
@@ -16,10 +16,23 @@ function App({ callback }) {
   };
 
   React.useEffect(() => {
+    // Attach your custom update callback.
     callback.onUpdate = () => {
-      notify();
+      setUpdateAvailable(true);
     };
   }, [callback]);
+  //
+
+  // Function to reload when the user agrees to update.
+  const handleRefresh = () => {
+    // Optionally send a message to the service worker to skip waiting:
+    // (This assumes your service-worker.js listens for 'SKIP_WAITING')
+    if (navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({ type: "SKIP_WAITING" });
+    }
+    // Now refresh the page to load the new version.
+    window.location.reload();
+  };
 
   return (
     <div className="App">
@@ -37,6 +50,21 @@ function App({ callback }) {
           Learn React
         </a>
       </header>
+
+      {updateAvailable && (
+        <div
+          className="update-notification"
+          style={{
+            background: "#fffae6",
+            padding: "10px",
+            textAlign: "center",
+          }}
+        >
+          <p>A new version of the app is available.</p>
+          <button onClick={handleRefresh}>Refresh</button>
+          <button onClick={() => setUpdateAvailable(false)}>Dismiss</button>
+        </div>
+      )}
 
       <ToastContainer />
     </div>
