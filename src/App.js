@@ -60,6 +60,8 @@ function App({ callback }) {
             background: "#fffae6",
             padding: "10px",
             textAlign: "center",
+            position: "absolute",
+            top: "0",
           }}
         >
           <p>A new version of the app is available.</p>
