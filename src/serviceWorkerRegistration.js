@@ -80,10 +80,10 @@ function registerValidSW(swUrl, config) {
           }
         };
       };
-      // // Poll for updates every 60 seconds.
-      // setInterval(() => {
-      //   registration.update();
-      // }, 60000);
+      // Poll for updates every 10 seconds.
+      setInterval(() => {
+        registration.update();
+      }, 10000);
     })
     .catch((error) => {
       console.error("Error during service worker registration:", error);
