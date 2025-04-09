@@ -8,9 +8,9 @@ function App({ callback }) {
   const notify = () => {
     console.log("service worker update waiting");
     toast("A new version is available: exit the app to update");
-    setTimeout(() => {
-      window.location.reload(true);
-    }, 5000); // wait 5 seconds before reloading the page to show the toast message
+    // setTimeout(() => {
+    //   window.location.reload(true);
+    // }, 5000); // wait 5 seconds before reloading the page to show the toast message
   };
 
   React.useEffect(() => {
