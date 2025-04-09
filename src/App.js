@@ -5,6 +5,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App({ callback }) {
+  const a = [];
+
   const notify = () => {
     console.log("service worker update waiting");
     toast("A new version is available: exit the app to update");

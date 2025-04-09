@@ -61,16 +61,12 @@ function registerValidSW(swUrl, config) {
       console.log({ registration });
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
-        console.log({ installingWorker });
         if (installingWorker == null) {
           return;
         }
         installingWorker.onstatechange = () => {
-          console.log({ installingWorkerState: installingWorker.state });
-
           if (installingWorker.state === "installed") {
             if (navigator.serviceWorker.controller) {
-              console.log({ controller: navigator.serviceWorker.controller });
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
@@ -78,14 +74,11 @@ function registerValidSW(swUrl, config) {
                 "New content is available and will be used when all " +
                   "tabs for this page are closed. See https://cra.link/PWA."
               );
-
               // Execute callback
               if (config && config.onUpdate) {
-                console.log({ config, registration });
                 config.onUpdate(registration);
               }
             } else {
-              console.log({ config, registration });
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
